@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 1164px;
+  margin: 0 auto;
+  padding: 0;
+}
+.nav {
+  max-width: 716px;
+  width: 100%;
+}
+.nav__list {
+  max-width: 549px;
+  width: 100%;
+  list-style: none;
+}
+.nav__link {
+  text-decoration: none;
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+}
+.header__container,
+.nav__list .nav__item {
+  justify-content: space-between;
+}
+

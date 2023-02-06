@@ -1,0 +1,4 @@
+1. gradients,scroll-behavior,background
+2. pseudo class -> hover, active, visited, focus  .... 
+   pseudo elements -> ::after, ::before, 
+   Dropdown, custom checkbox

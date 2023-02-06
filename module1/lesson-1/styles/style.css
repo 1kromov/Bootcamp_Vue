@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* header started */
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    width: 100%;
+    background-color: #fff;
+}
+.body{
+    background-color: blue;
+}
+
+.grid-container {
+    background-color: blue;
+    min-height: 500px;
+    display: grid;
+    align-items: stretch;
+    justify-items: stretch;
+    grid-template-columns: repeat( 4, minmax(320px,1fr));
+    grid-template-rows: 70px 90vh 200px 70px;
+    grid-template-areas: 
+    "nav nav nav nav"
+    "sidebar main main aside"
+    "content card card card"
+    "footer footer footer footer"
+    
+}
+
+.grid-item {
+    background-color: #fff;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-item:nth-child(1) {
+    grid-area: nav;
+    background-color: blue;
+}
+
+.grid-item:nth-child(2) {
+    grid-area: sidebar;
+    background-color: orange;
+}
+
+.grid-item:nth-child(3) {
+    grid-area: main;
+    background-color: rgb(42, 170, 230);
+}
+
+.grid-item:nth-child(4) {
+    grid-area: footer;
+    background-color: rgb(24, 23, 22);
+}
+
+.grid-item:nth-child(5) {
+    grid-area: aside;
+    background-color: rgb(198, 238, 18);
+}
+
+.grid-item:nth-child(6) {
+    grid-area: aside;
+    background-color: rgb(198, 238, 18);
+}
