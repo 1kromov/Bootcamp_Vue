@@ -53,7 +53,7 @@ function renderCards(cards) {
   cards.forEach((element) => {
     const card = createElement(
       "div",
-      "rounded-[5px] shadow-lg bg-white max-w-sm w-[264px] h-[336px]",
+      `rounded-[5px] shadow-lg dark:bg-black max-w-sm w-[264px] h-[336px] card`,
       `
     <a href="#!">
     <img
@@ -63,17 +63,19 @@ function renderCards(cards) {
     />
   </a>
   <div class="p-6 pb-7">
-    <h5 class="text-gray-900 text-xl font-medium mb-2">
+    <h5 class="text-gray-900  text-xl font-medium mb-2 card_title" data-isname="${element.name}">
       ${element.name}
     </h5>
-    <ul class="list-none">
-      <li><strong>Population:</strong> ${element.population}</li>
+    <ul class="list-none dark:text-black">
+      <li class=""><strong>Population:</strong> ${element.population}</li>
       <li><strong>Region:</strong>${element.region}</li>
       <li><strong>Capital:</strong>${element.capital}</li>
     </ul>
   </div>
     `
     );
+    card.dataset.insame = element.name;
+
     wrapperCards.append(card);
   });
 }
@@ -115,12 +117,13 @@ let searchInput = document.querySelector("#search");
 async function searchCountries(country) {
   wrapperCards.innerHTML = "<span class='loader'></span>";
   try {
-    const response = await  fetch(`${searchUrl}/${country}`);
-    const result = await response.json()
-    if(response.status === 200) {
-      renderCards(result)
-    }else {
-      wrapperCards.innerHTML = '<h1 class="text-red-800 text-4xl text-center">COUNTRY NOT FOUND!</h1>'
+    const response = await fetch(`${searchUrl}/${country}`);
+    const result = await response.json();
+    if (response.status === 200) {
+      renderCards(result);
+    } else {
+      wrapperCards.innerHTML =
+        '<h1 class="text-red-800 text-4xl text-center">COUNTRY NOT FOUND!</h1>';
     }
   } catch (error) {
     console.log(error);
@@ -132,8 +135,41 @@ searchInput.addEventListener("keyup", (e) => {
   if (e.target.value.trim().length > 0) {
     wrapperCards.innerHTML = " ";
     searchCountries(e.target.value);
-  }else {
-    searchInput.setAttribute('placeholder','Please enter country name')
-    getAllCountries()
+  } else {
+    searchInput.setAttribute("placeholder", "Please enter country name");
+    getAllCountries();
   }
 });
+
+let card = document.querySelector(".card");
+
+// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+if (
+  localStorage.theme === "dark" ||
+  (!("theme" in localStorage) &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches)
+) {
+  document.documentElement.classList.add("dark");
+} else {
+  document.documentElement.classList.remove("dark");
+}
+
+// Whenever the user explicitly chooses light mode
+localStorage.theme = "light";
+
+// Whenever the user explicitly chooses dark mode
+localStorage.theme = "dark";
+
+// Whenever the user explicitly chooses to respect the OS preference
+localStorage.removeItem("theme");
+
+wrapperCards.addEventListener("click", (e) => {
+  if (e.target.classList.contains("card_title")) {
+    const isname = e.target.getAttribute("data-isname");
+    localStorage.setItem('isname',isname);
+    
+    window.open("./country.html")
+    console.log(isname);
+  }
+});
+

@@ -1,0 +1,54 @@
+#them{
+    appearance: none !important;
+    width: 26px;
+    height: 26px;
+    border: 1px solid black;
+    position: relative;
+}
+#them::after{
+    content: '';
+    display: block;
+    width: 26px;
+    height: 26px;
+    background-image: url("../images/Group\ 3.svg");
+    /* background-color: lime; */
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+}
+#them:checked::after{
+    content: '';
+    display: block;
+    width: 26px;
+    height: 26px;
+    background-image: url("../images/Group\ 3\ \(1\).svg");
+    /* background-color: lime; */
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+}
+.loader {
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+    animation: roll 1s ease-in-out infinite alternate;
+    margin: 50px 600px;
+  }
+  .loader:after{
+    content:"";
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    border: 5px solid ;
+    border-color: #ff3d00 transparent;
+  }
+  @keyframes roll {
+    0% {
+      transform: translateX(-150%) rotate(0deg) ;
+    }
+    100% {
+      transform:  translateX(150%) rotate(360deg);
+    }
+  }

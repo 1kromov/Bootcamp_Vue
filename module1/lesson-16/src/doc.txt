@@ -1,0 +1,12 @@
+http://178.62.198.221:3003/user/register ---> sign up 
+                                                body{
+                                                    username: String,
+                                                    password: String
+                                                }
+http://178.62.198.221:3003/user/login  -----> sign in
+                                                body {
+                                                    username: String,
+                                                    password: String
+                                                }
+http://178.62.198.221:3003/task ---->
+
