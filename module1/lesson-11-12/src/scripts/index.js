@@ -53,16 +53,16 @@ let icon = document.querySelector(".icon");
 // icon.onclick = (e) => {
 //   console.log((e.target.style.color = "red"));
 // };
-icon.addEventListener("mouseup", (e) => {
-  console.log("UP");
-});
-icon.addEventListener("mousedown", (e) => {
-  console.log("DOWN");
-});
+// icon.addEventListener("mouseup", (e) => {
+//   console.log("UP");
+// });
+// icon.addEventListener("mousedown", (e) => {
+//   console.log("DOWN");
+// });
 
-window.addEventListener("mousemove", (e) => {
-  console.log(e.target);
-});
+// window.addEventListener("mousemove", (e) => {
+//   console.log(e.target);
+// });
 
 // ! product info dinamic
 let productInfoItems = [
@@ -115,75 +115,80 @@ productInfoItems.forEach((item) => {
   productInfo.append(element);
 });
 
+// carousel
+
 const carouselData = [
   {
     id: Date.now(),
     title: "What Our Customers About Us saying",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and dssds typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type",
-    clientName: "Stiv Jobs",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularis",
+    clinetName: "Ahmed Hridoy",
+    clientImage: "./images/aka.png",
+  },
+  {
+    id: Date.now(),
+    title: "What Our Customers About Us saying",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularis",
+    clinetName: "Mesut Özil",
+    clientImage: "https://picsum.photos/id/251/500/500",
+  },
+  {
+    id: Date.now(),
+    title: "What Our Customers About Us saying",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularis",
+    clinetName: "Elon Mask",
     clientImage: "https://picsum.photos/id/133/500/500",
   },
   {
     id: Date.now(),
     title: "What Our Customers About Us saying",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and dssds typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type",
-    clientName: "Bro",
-    clientImage: "https://picsum.photos/id/313/500/500",
-  },
-  {
-    id: Date.now(),
-    title: "What Our Customers About Us saying",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and dssds typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type",
-    clientName: "Elon Mask",
-    clientImage: "https://picsum.photos/id/134/500/500",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularis",
+    clinetName: "Stiv Jobs",
+    clientImage: "https://picsum.photos/id/533/500/500",
   },
 ];
 
-// const explore__wrapper = document.querySelectorAll(".explore__wrapper"),
-//   comment_wrapper = document.querySelector(".comment__wrapper"),
-//   leftBtn = document.querySelector(".left-icon"),
-//   rightBtn = document.querySelector(".right-icon");
-//   // list = document.querySelector(".list");
+const explore__wrapper = document.querySelectorAll(".explore__wrapper"),
+  comment_wrapper = document.querySelector(".comment__wrapper"),
+  leftBtn = document.querySelector(".left-icon"),
+  rightBtn = document.querySelector(".right-icon");
 
- const list = document.querySelector(".list");
+const list = document.querySelector(".list");
 
 carouselData.forEach((item) => {
   const itemCorusel = createElement(
     "div",
-    "explore__wrapper flex pt-[89px] pb-[143px] relative duration-500  min-w-[1239px] mx-1 px-3",
-    `<div class="explore__info">
-    <h1
-      class="text-6xl font-bold w-[640px] mb-[20px] leading-[90px] mt-[20px]"
-    >
-      ${item.title}
-    </h1>
-    <p class="text-[#555555] text-lg w-[586px] leading-8">
-      ${item.description}
-    </p>
-    <h3
-      class="text-[30px] font-normal mb-[20px] leading-[36px] mt-[40px]"
-    >
-      ${item.clientName}
-    </h3>
-    <img src="./images/yulduzcha.svg" alt="stars" />
-    
-  </div>
-  <div class="ml-[100px] relative">
-    <img src="${item.clientImage}" alt="aka" class="w-[450px] h-[450px] rounded-full object-cover"/>
-    <img
-      src="./images/reyting.png"
-      alt="reyting"
-      class="absolute bottom-4 -left-8"
-    />
-  </div>
-
+    "explore__wrapper swiper-slide flex pt-[89px] pb-[143px] relative  duration-500 min-w-[1239px] mx-1 px-3",
     `
+             <div class="explore__info">
+              <h1 class="text-6xl font-bold w-[640px] mb-[20px] leading-[90px] mt-[20px]">
+              ${item.title}
+              </h1>
+              <p class="text-[#555555] text-lg w-[586px] leading-8">
+           ${item.description}
+              </p>
+              <h3 class="text-[30px] font-normal mb-[20px] leading-[36px] mt-[40px]">
+                ${item.clinetName}
+              </h3>
+              <img src="./images/yulduzcha.svg" alt="stars" />
+
+            </div>
+            <div class="ml-[80px] relative">
+              <img src="${item.clientImage}" alt="aka" class="w-[450px] h-[450px] rounded-full object-cover" />
+              <img src="./images/reyting.png" alt="reyting" class="absolute bottom-4 -left-8" />
+            </div>
+  
+  `
   );
+
   list.append(itemCorusel);
 });
+
+let nextIndex = 0;
 
 function slider() {
   if (nextIndex > carouselData.length - 1) {
@@ -194,12 +199,12 @@ function slider() {
   }
   list.style.transform = `translateX(${-nextIndex * 1239}px)`;
 }
+
 const playCarousel = setInterval(() => {
   nextIndex += 1;
   slider();
 }, 3500);
 
-let nextIndex = 0;
 leftBtn.addEventListener("click", () => {
   nextIndex -= 1;
   slider();
@@ -211,3 +216,40 @@ rightBtn.addEventListener("click", () => {
   slider();
   clearInterval(playCarousel);
 });
+
+let body = document.querySelector("body");
+let header = document.querySelector("header");
+let intro = document.querySelector(".intro__wrapper");
+let intro__content = document.querySelector('.info__content---items');
+let person = document.querySelector('.person')
+
+
+console.log(body);
+
+window.addEventListener("scroll", (e) => {
+  console.log(window.scrollY);
+
+  let scrollY = window.scrollY;
+
+  if (scrollY > 232) {
+    header.classList.add(
+      "top-0",
+      "w-full",
+      "bg-white",
+      "z-10",
+      "duration-500",
+    );
+  } else {
+    header.classList.remove("fixed");
+  }
+  if(scrollY > 243 ) {
+    intro__content.classList.remove("-translate-x-96")
+    person.classList.remove("translate-x-96")
+  }else {
+
+  }
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  intro.classList.remove('transltae-y-60')
+})
