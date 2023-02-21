@@ -6,12 +6,11 @@
     </aside>
 
     <div class="main bg-indigo-100 min-w-full h-screen mt-[70px] p-8">
-      <h1>Lorem, ipsum.</h1>
-      <Home />
+      <RouterView/>
     </div>
 
   </main>
-  <Footer />
+  <Footer/>
 </template>
 
 
@@ -21,7 +20,9 @@
 import Header from "./components/Header/Header.vue";
 import Sidebar from "./components/Sidebar/Sidebar.vue";
 import Footer from "./components/Footer/Footer.vue";
+import Form from "./components/Form/Form.vue";
 import Home from "./views/Home/Home.vue";
+import { RouterView } from "vue-router";
 
 
 export default {
@@ -31,6 +32,7 @@ export default {
     Sidebar,
     Footer,
     Home,
+    Form
   },
 
   data() {
@@ -50,4 +52,7 @@ export default {
 
 
 
-<style></style>
+<style>
+
+
+</style>
