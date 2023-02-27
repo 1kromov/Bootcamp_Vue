@@ -1,41 +1,39 @@
-<template >
-    <Header/>
+<template>
+  <Header />
   <main>
     <section class="main">
-      <RouterView/>
+      <RouterView />
     </section>
   </main>
-  <Footer/>
+  <Footer />
 </template>
+
 <script>
-import Header from "@/components/Header/Header.vue"
-import Footer from "@/components/Footer/Footer.vue"
-import {RouterView} from "vue-router"
+import Header from "@/components/Header/Header.vue";
+import Footer from "@/components/Footer/Footer.vue";
+import { RouterView } from "vue-router";
+
+
 export default {
-  name:"App",
+  name: "App",
   data() {
     return {
-
-    }
+      userlist: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      message: "Welcome to Vue.js"
+    };
   },
   components: {
     Header,
-    Footer,
+    Footer
   },
-  methods: {
-    
-  },
-  computed: {
-
-  },
-
-  
-}
+  methods: {},
+  computed: {},
+  mounted() { },
+};
 </script>
 <style scoped>
-
-  main {
-    min-height: calc(100vh - 75px - 75px);
-    width: 100%;
-  }
+main {
+  min-height: calc(100vh - 75px - 70px);
+  width: 100%;
+}
 </style>

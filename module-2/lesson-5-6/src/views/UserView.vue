@@ -2,11 +2,20 @@
   <div
     class="bg-white pt-5 w-1/2 mx-auto min-h-[300px] shadow-lg px-10 container"
   >
-    <h1 class="text-cyan-400 text-center text-2xl uppercase font-semibold">
-      User List
+    <!-- modal  -->
+    <Modal :isOpen="isOpen" @hide="hideModal" />
+    <!-- modal  -->
+
+    <h1
+      class="text-rgb(25, 235, 25)-700 text-center text-2xl uppercase font-semibold"
+    >
+      User list
     </h1>
-    <table class="list bg-cyan-50 table-auto w-full border-separate">
-      <thead class="p-5 rounded-xl w-full">
+
+    <table
+      class="list bg-rgb(25, 235, 25)-50 table-auto w-full border-separate border-spacing-2"
+    >
+      <thead class="p-5 bg-rgb(25, 235, 25)-300 rounded-xl w-full">
         <tr>
           <th>ID</th>
           <th>Name</th>
@@ -15,9 +24,12 @@
           <th>Remove</th>
         </tr>
       </thead>
-      <h1 class="text-center" v-if="!userList.length">USER LIST IS EMPTY</h1>
+
+      <h1 class="text-center" v-if="!userList.length">USER LIST EMPTY</h1>
+
       <span class="loader" v-if="isLoading"></span>
-      <tbody class="w-full border-spacing-2">
+
+      <tbody class="w-full">
         <ListItem
           v-if="!isLoading"
           v-for="(item, index) in userList"
@@ -25,6 +37,8 @@
           :num="index"
           :item="item"
           :removeUser="removeUser"
+          @open="isOpenTrue"
+          @edit="updatePost"
         />
       </tbody>
     </table>
@@ -32,18 +46,24 @@
 </template>
 <script>
 import axios from "@/service/axios";
-import ListItem from "../ui/ListItem.vue";
+import ListItem from "@/ui/ListItem.vue";
+import Modal from "@/components/Modal/Modal.vue";
+
 export default {
   name: "UserView",
-  components: { ListItem },
+  components: { ListItem, Modal },
   data() {
     return {
       userList: [],
       isLoading: true,
+      isOpen: false,
+      editId: "",
+      username: "",
+      useremail:"",
     };
   },
   methods: {
-    async getAllUser() {
+    async getAlluser() {
       try {
         const user = await axios.get("/user");
         console.log(user);
@@ -51,50 +71,99 @@ export default {
           this.userList = user.data;
           setTimeout(() => {
             this.isLoading = false;
-          }, 3000);
+          }, 300);
         }
-      } catch (error) {
-        console.log(error);
+      } catch (e) {
+        console.log(e);
       }
     },
+
     removeUser(id) {
-        axios.delete(`/user/${id}`,{})
-        location.reload();
+      axios.delete(`/user/${id}`, {});
+      location.reload();
+    },
+
+    async isOpenTrue(id) {
+      this.isOpen = true;
+      this.editId = id;
+
+      try {
+        const postItem = await axios.get(`/user/${this.editId}`);
+        console.log(postItem.data);
+      } catch (e) {
+        console.log(e);
       }
+    },
+
+    hideModal() {
+      this.isOpen = false;
+    },
+    updatePost(data) {
+      axios.put(`/user/${this.editId}`,data)
+    }
   },
   mounted() {
-    this.getAllUser();
+    this.getAlluser();
   },
-  components: { ListItem },
+  computed() {
+    this.getAlluser();
+  },
+
+  updated() {
+    console.log("updated");
+  },
 };
 </script>
-<style>
+<style scoped>
 .loader {
-  width: 8px;
-  height: 48px;
-  display: inline-block;
   position: relative;
-  border-radius: 4px;
-  color: rgb(64, 220, 231);
-  box-sizing: border-box;
-  animation: animloader 0.6s linear infinite;
+  width: 85px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgb(25, 228, 235) 50px, transparent 0),
+    linear-gradient(rgb(25, 228, 235) 50px, transparent 0),
+    linear-gradient(rgb(25, 228, 235) 50px, transparent 0),
+    linear-gradient(rgb(25, 228, 235) 50px, transparent 0),
+    linear-gradient(rgb(25, 228, 235) 50px, transparent 0),
+    linear-gradient(rgb(25, 228, 235) 50px, transparent 0);
+  background-position: 0px center, 15px center, 30px center, 45px center,
+    60px center, 75px center, 90px center;
+  animation: rikSpikeRoll 0.65s linear infinite alternate;
+  display: block;
 }
 
-@keyframes animloader {
+@keyframes rikSpikeRoll {
   0% {
-    box-shadow: 20px -10px, 40px 10px, 60px 0px;
+    background-size: 10px 3px;
   }
-  25% {
-    box-shadow: 20px 0px, 40px 0px, 60px 10px;
+
+  16% {
+    background-size: 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px, 10px 3px;
   }
+
+  33% {
+    background-size: 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px,
+      10px 3px;
+  }
+
   50% {
-    box-shadow: 20px 10px, 40px -10px, 60px 0px;
+    background-size: 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px,
+      10px 3px;
   }
-  75% {
-    box-shadow: 20px 0px, 40px 0px, 60px -10px;
+
+  66% {
+    background-size: 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px,
+      10px 3px;
   }
+
+  83% {
+    background-size: 10px 3px, 10px 3px, 10px 10px, 10px 30px, 10px 50px,
+      10px 3px;
+  }
+
   100% {
-    box-shadow: 20px -10px, 40px 10px, 60px 0px;
+    background-size: 10px 3px, 10px 3px, 10px 3px, 10px 10px, 10px 30px,
+      10px 50px;
   }
 }
 </style>
