@@ -1,0 +1,11 @@
+1. Router params
+2. Router push
+3. Router registr
+
+
+1. Vuex install
+2. Local store vs Global store
+3. State
+4. Mutations
+5. Commit
+6. Computed
